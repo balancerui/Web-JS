@@ -135,3 +135,162 @@
 		数据验证可以使用不同方法来定义，并通过多种方式来调用。
 		服务端数据验证是在数据提交到服务器上后再验证。
 		客户端数据验证 side validation是在数据发送到服务器前，在浏览器上完成验证。
+15.JS函数定义
+	function functionName(a,b) {
+		函数体/执行的代码
+		return a*b;
+	}
+	分号是用来分隔可执行JavaScript语句。 
+	由于函数声明不是一个可执行语句，所以不以分号结束。
+函数表达式：
+	var x = function(a,b){
+		return a*b;
+	}
+构造函数function()
+	var myFunction = new Function("a", "b", "return a * b");
+	var x = myFunction(4, 3);
+	函数可作为一个值使用
+	function myfunction(a,b) {
+		return a+b;
+	}
+	var x = myfunction(3,4);
+	toString() 方法将函数作为一个字符串返回:
+	function myFunction(a, b) {
+		return a * b;
+	}
+	var txt = myFunction.toString();
+16.JS函数参数
+	JavaScript 函数定义时显式参数没有指定数据类型。
+	JavaScript 函数对隐式参数没有进行类型检测。
+	JavaScript 函数对隐式参数的个数没有进行检测。
+	function myfunction(x,y){
+		y = y || 0;	}
+	argument对象包含了函数需要调用的参数数组
+17.JS函数调用
+	①作为方法调用
+		var object = {
+			firstName:"bob",
+			lastName:"jaskon",
+			fullName:function() {
+				return this.firstName + " " + this.lastName;
+			};
+			
+		}
+		object.fullName;
+	②使用构造函数调用函数
+	如果函数调用前使用了 new 关键字, 则是调用了构造函数。
+	// 构造函数:
+	function myFunction(arg1, arg2) {
+		this.firstName = arg1;
+		this.lastName  = arg2;
+	}
+	var x = new myFunction("John","Doe");
+	x.firstName;                             // 返回 "John"
+18.JS闭包
+	var add = (function () {
+		var counter = 0;
+		return function () {return counter += 1;}
+		})();
+		function myFunction(){
+		document.getElementById("demo").innerHTML = add();
+	}
+	闭包就是一个函数引用另一个函数的变量，因为变量被引用着所以不会被回收，因此可以用来封装一个私有变量。这是优点也是缺点，不必要的闭包只会增加内存消耗。
+	或者说闭包就是子函数可以使用父函数的局部变量，还有父函数的参数。
+19.JS HTML-DOM（文档对象模型）
+	网页在进行加载时，浏览器会创建页面的DOM
+	通过可编程的对象模型，JavaScript 获得了足够的能力来创建动态的 HTML。
+	JavaScript 能够改变页面中的所有 HTML 元素
+		（1）改变HTML的输出流
+			Document.write(Date());
+		（2）改变HTML的内容
+			Document.getElementById("demo").innerHTML="新文本"；
+		（3）改变HTML的属性
+			<img id="image" src="a.jpg">
+			Document.getElementById("image").src="cc.png";
+	JavaScript 能够改变页面中的所有 HTML 属性		
+	JavaScript 能够改变页面中的所有 CSS 样式
+		（1）改变HTML样式
+			Document.getElementById("demo").style.color="red";
+			Document.getElementClassName("demo").style.fontsize="Larger";
+	JavaScript 能够对页面中的所有事件做出反应
+		（1）使用事件
+			<button type="button" onclick="document.getElementById("demo").style.color="red" ">
+		（2）对事件做出反应
+			<h1 onClick="this.innerHTML='ok!' " >点击文本</h1>
+	HTML事件属性
+		document.getElementById("myBtn").onclick=function(){displayDate()};
+		onload 和 onunload 事件会在用户进入或离开页面时被触发。onload 和 onunload 事件可用于处理 cookie。
+			<body onload="checkCookies()">
+		onchange 事件常结合对输入字段的验证来使用。当用户改变输入字段的内容时，会调用 upperCase() 函数。
+			<input type="text" id="fname" onchange="upperCase()">
+		onmouseover 和 onmouseout 事件可用于在用户的鼠标移至 HTML 元素上方或移出元素时触发函数。
+	DOM事件监听（EventListener）
+		document.getElementById("id").addEventListener("click",displayDate);---向指定元素添加句柄
+		添加事件句柄
+		Element.addEventListener("click",function(){alert("hello"); });
+20.JS HTML DOM节点
+	①创建新的DOM节点 appendChild()--加在新元素末尾
+	②插入节点 insertBefore()---将新元素添加到开始位置
+	③替换HTML元素 replaceChild() 
+21.HTML DOM 集合
+		var x = document.getElementsByTagName()方法返回HTML Collection对象
+		获取对象的length
+			var myCollection = document.getElementsByTagName("p");
+			document.getElementById("demo").innerHTML = myCollection.length;
+22.JavaScript对象
+	对象拥有属性和方法
+	访问对象的属性：
+		ObjectName.propertyName
+		var x = "hello world";
+		var y = x.length;
+	访问对象的方法：
+		ObjectName.method();
+		var message = "hello world";
+		var x = message.toUppercase();
+	创建JS对象
+		person = new object();
+		person.firstName="bob";
+		person.age=50;
+		person={firstname:"John",lastname:"Doe",age:50,eyecolor:"blue"};
+	使用对象的构造器
+		function person(firstname,lastname,age,eyecolor)
+		{
+			this.firstname=firstname;
+			this.lastname=lastname;
+			this.age=age;
+			this.eyecolor=eyecolor;
+		}
+	创建JS的实例
+		var person = new Person("John",50,"blue");
+	把方法添加到对象中去
+		function Person(firstName,lastName) {
+			this.firstName=firstName;
+			this.lastName=lastName;
+			function changeName(name) {
+				this.lastName=name;
+			}			
+		
+		}
+	JS for-in循环
+		for(var in object){
+			for...in 循环中的代码块将针对每个属性执行一次。
+		}
+		实例：
+		var person = {firstName:"john",age:25}
+		for (x in person) {
+			txt = txt + person[x];
+		}
+	引入外部的JS文件
+	<script src="xx.js" type="text/javaScript"></script>
+23.javaScript数组
+	1.创建数组
+	var myCars=new Array("Saab","Volvo","BMW");
+	2.创建新方法
+	原型是JavaScript全局构造函数。它可以构建新Javascript对象的属性和方法。
+	Array.prototype.myUcase=function(){
+    for (i=0;i<this.length;i++){
+        this[i]=this[i].toUpperCase();
+    }
+}
+	
+	
